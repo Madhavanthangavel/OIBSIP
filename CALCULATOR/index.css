@@ -25,17 +25,17 @@ body {
 }
 
 input {
-    width: calc(100% - 20px); /* Adjusted width to consider padding and margin */
+    width: calc(100% - 20px); 
     border: none;
     padding: 24px;
-    margin: 10px 0; /* Adjusted margin to top and bottom only */
+    margin: 10px 0; 
     background: transparent;
     box-shadow: 0px 3px 50px rgba(84, 84, 84, 0.1);
     font-size: 40px;
-    text-align: left; /* Changed from "right" to "left" */
+    text-align: left; 
     cursor: pointer;
     color: #ffffff;
-    outline: none; /* Added to remove default outline */
+    outline: none; 
 }
 
 
@@ -54,7 +54,7 @@ button {
     font-size: 20px;
     box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    outline: none; /* Added to remove default outline */
+    outline: none; 
 }
 
 .equalbtn {
