@@ -1,62 +1,399 @@
-<html>
-    <head>
-        <title>Firebase_form</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="box">
-            <div class="form">
-                <h2>Login Form</h2>
-                <form>
-                    <div class="inputbox">
-                        <input type="text" value="" id="username" required>
-                        <span>username</span>
-                    </div>
-                    <div class="inputbox">
-                        <input type="email" value="" id="email" required>
-                        <span>E-mail</span>
-                    </div>
-                    <div class="inputbox">
-                        <input type="text" value="" id="phone" required>
-                        <span>Phone Number</span>
-                    </div>
-                    <input type="submit" value="submit" class="sub" id="submit">
-                </form>
+
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="style.css">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h2 class="logo">logo</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">log in </button>
+        </nav>
+    </header>
+    <div class="wrapper">
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+        <div class="form-box login">
+            <h2>login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                  <input type="email" required>
+                  <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                  <input type="password" required>
+                  <label for="">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label ><input type="checkbox" name="" id="">remember me</label>
+                <a href="#">forgot password?</a>
+                </div>
+                <button type="submit" class="btn" >Log in</button>
+            <div class="login-register">
+                <p>don't have an account?<a href="#" class="register-link">register </a>
+
+                </p>
             </div>
+            
+            </form>
         </div>
-        <script type="module">
-               // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-            import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-  // Your web app's Firebase configuration
-            const firebaseConfig = {
-              apiKey: "AIzaSyAkPgAR0Hs6v5oNlmxYxI2OGh-S8YA2OWU",
-              authDomain: "creativetutorial-43ba7.firebaseapp.com",
-              projectId: "creativetutorial-43ba7",
-              storageBucket: "creativetutorial-43ba7.appspot.com",
-              messagingSenderId: "52869654198",
-              appId: "1:52869654198:web:0a19740d1f26ade1066817"
-            };
-
-  // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-
-   //get ref to database services
-             const db = getDatabase(app);
-
-             document.getElementById("submit").addEventListener('click', function(e){
-              e.preventDefault();
-              set(ref(db, 'user/' + document.getElementById("username").value),
-              {
-   
-                username: document.getElementById("username").value,
-                email: document.getElementById("email").value,
-                PhoneNumber: document.getElementById("phone").value
-
-              });
-                alert("Login Sucessfull  !");
-             })
-        </script>
-    </body>
+    </div>
+        
+</body>
 </html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.querySelector('.form-box.login form');
+    const closeButton = document.querySelector('.icon-close');
+    const loginButton = document.querySelector('.btnLogin-popup');
+    const registerLink = document.querySelector('.register-link');
+
+    // Function to show login form
+    function showLoginForm() {
+        document.querySelector('.wrapper').style.display = 'block';
+    }
+
+    // Function to hide login form
+    function hideLoginForm() {
+        document.querySelector('.wrapper').style.display = 'none';
+    }
+
+    // Toggle login form visibility when login button is clicked
+    loginButton.addEventListener('click', function () {
+        showLoginForm();
+    });
+
+    // Close login form when close button is clicked
+    closeButton.addEventListener('click', function () {
+        hideLoginForm();
+    });
+
+    // Close login form when clicking outside of the form
+    window.addEventListener('click', function (event) {
+        if (event.target == document.querySelector('.wrapper')) {
+            hideLoginForm();
+        }
+    });
+
+    // Redirect to register page when register link is clicked
+    registerLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default link behavior
+        // You can add logic here to redirect to the register page
+        alert('Redirect to register page');
+    });
+
+    // Function to handle form submission (You can add your own logic here)
+    loginForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission (for demo purposes)
+        const email = loginForm.querySelector('input[type="email"]').value;
+        const password = loginForm.querySelector('input[type="password"]').value;
+        // You can add your own validation and authentication logic here
+        console.log('Email:', email);
+        console.log('Password:', password);
+        // For demo, just hide the login form
+        hideLoginForm();
+    });
+});
+
+// Continue from where we left off
+
+// Handling remember me functionality
+const rememberCheckbox = loginForm.querySelector('input[type="checkbox"]');
+const rememberMeKey = 'rememberMe';
+
+// Function to check if 'remember me' is checked and remember the state
+function handleRememberMe() {
+    if (rememberCheckbox.checked) {
+        localStorage.setItem(rememberMeKey, 'true');
+    } else {
+        localStorage.removeItem(rememberMeKey);
+    }
+}
+
+// Function to load 'remember me' state
+function loadRememberMe() {
+    const rememberMe = localStorage.getItem(rememberMeKey);
+    if (rememberMe === 'true') {
+        rememberCheckbox.checked = true;
+    }
+}
+
+// Load 'remember me' state when the page is loaded
+loadRememberMe();
+
+// Remember 'remember me' state when checkbox is changed
+rememberCheckbox.addEventListener('change', function () {
+    handleRememberMe();
+});
+
+// You can add more functionality here as needed
+
+// Continue from where we left off
+
+// Function to handle login button click
+function handleLogin() {
+    const email = loginForm.querySelector('input[type="email"]').value;
+    const password = loginForm.querySelector('input[type="password"]').value;
+
+    // You can perform validation here
+    if (email.trim() === '' || password.trim() === '') {
+        alert('Please enter both email and password.');
+        return;
+    }
+
+    // Here you can make an AJAX request to your server for authentication
+    // For demo purposes, let's just log the email and password
+    console.log('Logging in with email:', email, 'and password:', password);
+
+    // After successful login, you may want to redirect the user or perform other actions
+    // For demo, let's just hide the login form
+    hideLoginForm();
+}
+
+// Add event listener to login button
+loginForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission (handled by our custom function)
+    handleLogin(); // Call custom function to handle login
+});
+
+// Continue from where we left off
+
+// Function to handle registration link click
+function handleRegister() {
+    // Here you can add logic to redirect to the registration page
+    alert('Redirecting to registration page...');
+    // For demo, let's just hide the login form
+    hideLoginForm();
+}
+
+// Add event listener to register link
+registerLink.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default link behavior
+    handleRegister(); // Call custom function to handle registration
+});
+    </script>
+
+
+
+
+
+ <style>
+        @import url();
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(Cuando\ no\ ves\ la\ luz\ en\ el\ horizonte.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+.logo{
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+
+}
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border:2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.navigation .btnLogin-popup:hover{
+    background: #fff;
+    color: black ;
+}
+.wrapper{
+    position: relative;
+    width: 440px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    backdrop-filter: blur(40px);
+    box-shadow:0 0 30px white ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    height: 50px;
+    width: 50px;
+    background: black;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: -1;
+
+
+}
+    
+
+.form-box h2{
+    font-size: 2em;
+    color: rgb(14, 12, 12);
+    text-align: center;
+}
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid white;
+    margin: 30px 0;
+}
+.input-box label{
+ position: absolute;  
+ top: 50%;
+ left: 5px;
+ transform: translateY(-50%);
+ font-size: 1em;
+ color: black;
+ pointer-events: none; 
+ transition: .5s;
+ font-weight: 300;
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: black;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: black;
+    line-height: 57px;
+}
+.remember-forgot{
+    font-size: .9em;
+    color: black;
+    font-weight: 500;
+    margin: -15px 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.remember-forgot label input{
+    margin: 3px;
+}
+.remember-forgot a{
+    color: black;
+    text-decoration: none;
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+.btn{
+   width: 100%;
+   height: 45px;
+   background: black;
+   border: none;
+   outline: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 1em;
+   color: white;
+   font-weight: 500; 
+}
+.login-register{
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px 0;
+}
+.login-register p a{
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p a:hover{
+    text-decoration: underline;
+
+}
+
+
+</style>
