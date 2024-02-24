@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo Lindner Tribute Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+    <header>
+        <h1>Remembering Jo Lindner</h1>
+    </header>
+    <div class="background-image">
+      
+    </div>
+    <main>
+            <div class="floating image" style="max-width:500px" >
+                <img class="mySlides" src="https://www.thestatesman.com/wp-content/uploads/2019/09/QT-Jo-Lindner.jpg" style="width:100%;">
+                <img class="mySlides" src="https://www.thesun.co.uk/wp-content/uploads/2023/07/es_Jo-Lindner_blog_comp.jpg?strip=all&w=620&h=413&crop=1" style="width:100%">
+                <img class="mySlides" src="https://dab57h0r8ahff.cloudfront.net/630984/uploads/e91539c0-1840-11ee-9a21-25338598974b_800_420.png" style="width:100%;">  
+                <img class="mySlides" src="https://generationiron.com/wp-content/uploads/2023/07/Jo-Lindner-bodybuilder-696x369.jpg" style="width:100%;">
+                <img class="mySlides" src="https://media.distractify.com/brand-img/xTAk0jKuo/0x0/jo-lindner-nicha-1688377637446.jpeg" style="width:100%;">
+                <img class="mySlides" src="https://pbs.twimg.com/media/Fz9CyRzWAAIYf2F.jpg" style="width:100%;"> 
+             </div>
+    <div class="container">
+      <p>Jo Lindner is a renowned entrepreneur and motivational speaker known for his dynamic approach to personal development and leadership. With a background in business and psychology, Lindner has captivated audiences worldwide with his insightful talks and seminars, inspiring individuals and organizations to unlock their full potential. His unique blend of practical strategies and inspiring anecdotes empowers people to overcome obstacles, embrace change, and achieve their goals. Lindner's infectious enthusiasm and authentic storytelling make him a sought-after speaker, guiding audiences to discover their inner strengths and pursue success with passion and resilience. Through his impactful work, Jo Lindner continues to make a profound impact on individuals and businesses alike, fostering positive change and empowering others to thrive in both their personal and professional lives.</p>
+    </div>
+    
+    <!-- Additional Content -->
+    <section>
+        <h2>Key Accomplishments</h2>
+        <ul>
+            <li>Founded Lindner Enterprises in 2005</li>
+            <li>Authored best-selling book "Unlock Your Potential"</li>
+            <li>Delivered motivational speeches in over 20 countries</li>
+            <li>Recipient of the Global Leadership Award in 2018</li>
+        </ul>
+        <img src="https://repone.de/wp-content/uploads/2022/11/jo-lindner-wettkampf.jpg" alt="Description of the image" style="height: 400px;
+        width: 800px;border-radius: 20%;">
+    </section>
+    
+    <section>
+        <h2>Quotes</h2>
+        <blockquote>
+            <p>"Success is not just about achieving your goals, it's about becoming the person who can achieve those goals."</p>
+            <footer>- Jo Lindner</footer>
+        </blockquote>
+        <blockquote>
+            <p>"Embrace change, for it is the only constant in life."</p>
+            <footer>- Jo Lindner</footer>
+        </blockquote>
+        <img src="https://i.ytimg.com/vi/iIY9uth43vU/sddefault.jpg" alt="Description of the image" style="height: 400px;
+        width: 800px;border-radius: 20%;">
+    </section>
+    
+    <!-- New Information -->
+    <section>
+        <h2>Early Life</h2>
+        <p>Jo Lindner was born on June 12, 1978, in Munich, Germany. Growing up, he showed a keen interest in sports and personal development, which laid the foundation for his future endeavors as a motivational speaker and entrepreneur.</p>
+    </section>
+    
+    <section>
+        <h2>Education</h2>
+        <p>Lindner pursued his academic interests in psychology and business administration. He earned a Bachelor's degree in Psychology from the University of Munich and later obtained a Master's degree in Business Administration from the Ludwig Maximilian University of Munich.</p>
+    </section>
+    
+    <section>
+        <h2>Philanthropy</h2>
+        <p>Besides his professional pursuits, Jo Lindner is actively involved in various philanthropic activities. He supports initiatives aimed at providing education and mentorship to underprivileged youth, believing in the power of education to transform lives and communities.</p>
+    </section>
+    
+    </main>
+    
+    <footer>
+        <p>copyright@2024</p>
+    </footer>
+   
+</body>
+</html>
+
+
+
+
+
+<script>
+    var myIndex = 0;
+    carousel();
+    
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}    
+      x[myIndex-1].style.display = "block";  
+      setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+    </script>
