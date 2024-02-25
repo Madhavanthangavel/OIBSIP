@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="style.css">
     
 <head>
     <meta charset="UTF-8">
@@ -9,6 +7,61 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="backgroundimg">
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.querySelector('.form-box.login form');
+            const loginButton = document.querySelector('.form-box.login .btn');
+            const closeButton = document.querySelector('.icon-close');
+            const loginPopup = document.querySelector('.wrapper');
+
+            // Function to show the login popup
+            function showLoginPopup() {
+                loginPopup.style.display = 'block';
+            }
+
+            // Function to hide the login popup
+            function hideLoginPopup() {
+                loginPopup.style.display = 'none';
+            }
+
+            // Event listener for the login button
+            loginButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                const email = loginForm.querySelector('input[type="email"]').value;
+                const password = loginForm.querySelector('input[type="password"]').value;
+
+                // Simple validation, you can add more complex validation here
+                if (email.trim() === '' || password.trim() === '') {
+                    alert('Please enter both email and password.');
+                } else {
+                    // Simulating a successful login
+                    alert(`Logged in successfully with Email: ${email}`);
+                    hideLoginPopup();
+                }
+            });
+
+            // Event listener for the close button
+            closeButton.addEventListener('click', function () {
+                hideLoginPopup();
+            });
+
+            // Event listener for the register link
+            document.querySelector('.register-link').addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Redirecting to registration page...');
+                // You can redirect the user to the registration page here
+            });
+
+            // Event listener for the login link in the navigation
+            document.querySelector('.btnLogin-popup').addEventListener('click', function (e) {
+                e.preventDefault();
+                showLoginPopup();
+            });
+        });
+    </script>
     <header>
         <h2 class="logo">logo</h2>
         <nav class="navigation">
@@ -48,146 +101,13 @@
             </form>
         </div>
     </div>
-        
 </body>
 </html>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const loginForm = document.querySelector('.form-box.login form');
-    const closeButton = document.querySelector('.icon-close');
-    const loginButton = document.querySelector('.btnLogin-popup');
-    const registerLink = document.querySelector('.register-link');
-
-    // Function to show login form
-    function showLoginForm() {
-        document.querySelector('.wrapper').style.display = 'block';
-    }
-
-    // Function to hide login form
-    function hideLoginForm() {
-        document.querySelector('.wrapper').style.display = 'none';
-    }
-
-    // Toggle login form visibility when login button is clicked
-    loginButton.addEventListener('click', function () {
-        showLoginForm();
-    });
-
-    // Close login form when close button is clicked
-    closeButton.addEventListener('click', function () {
-        hideLoginForm();
-    });
-
-    // Close login form when clicking outside of the form
-    window.addEventListener('click', function (event) {
-        if (event.target == document.querySelector('.wrapper')) {
-            hideLoginForm();
-        }
-    });
-
-    // Redirect to register page when register link is clicked
-    registerLink.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
-        // You can add logic here to redirect to the register page
-        alert('Redirect to register page');
-    });
-
-    // Function to handle form submission (You can add your own logic here)
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission (for demo purposes)
-        const email = loginForm.querySelector('input[type="email"]').value;
-        const password = loginForm.querySelector('input[type="password"]').value;
-        // You can add your own validation and authentication logic here
-        console.log('Email:', email);
-        console.log('Password:', password);
-        // For demo, just hide the login form
-        hideLoginForm();
-    });
-});
-
-// Continue from where we left off
-
-// Handling remember me functionality
-const rememberCheckbox = loginForm.querySelector('input[type="checkbox"]');
-const rememberMeKey = 'rememberMe';
-
-// Function to check if 'remember me' is checked and remember the state
-function handleRememberMe() {
-    if (rememberCheckbox.checked) {
-        localStorage.setItem(rememberMeKey, 'true');
-    } else {
-        localStorage.removeItem(rememberMeKey);
-    }
-}
-
-// Function to load 'remember me' state
-function loadRememberMe() {
-    const rememberMe = localStorage.getItem(rememberMeKey);
-    if (rememberMe === 'true') {
-        rememberCheckbox.checked = true;
-    }
-}
-
-// Load 'remember me' state when the page is loaded
-loadRememberMe();
-
-// Remember 'remember me' state when checkbox is changed
-rememberCheckbox.addEventListener('change', function () {
-    handleRememberMe();
-});
-
-// You can add more functionality here as needed
-
-// Continue from where we left off
-
-// Function to handle login button click
-function handleLogin() {
-    const email = loginForm.querySelector('input[type="email"]').value;
-    const password = loginForm.querySelector('input[type="password"]').value;
-
-    // You can perform validation here
-    if (email.trim() === '' || password.trim() === '') {
-        alert('Please enter both email and password.');
-        return;
-    }
-
-    // Here you can make an AJAX request to your server for authentication
-    // For demo purposes, let's just log the email and password
-    console.log('Logging in with email:', email, 'and password:', password);
-
-    // After successful login, you may want to redirect the user or perform other actions
-    // For demo, let's just hide the login form
-    hideLoginForm();
-}
-
-// Add event listener to login button
-loginForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission (handled by our custom function)
-    handleLogin(); // Call custom function to handle login
-});
-
-// Continue from where we left off
-
-// Function to handle registration link click
-function handleRegister() {
-    // Here you can add logic to redirect to the registration page
-    alert('Redirecting to registration page...');
-    // For demo, let's just hide the login form
-    hideLoginForm();
-}
-
-// Add event listener to register link
-registerLink.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    handleRegister(); // Call custom function to handle registration
-});
-    </script>
+   
 
 
-
-
-<style>
+ <style>
         @import url();
 *{
     margin: 0;
@@ -201,7 +121,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(Cuando\ no\ ves\ la\ luz\ en\ el\ horizonte.jpeg) no-repeat;
+    background: url(https://e0.pxfuel.com/wallpapers/654/149/desktop-wallpaper-dark-forest-with-moon-dark-forest-computer.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 
@@ -393,6 +313,11 @@ header{
     text-decoration: underline;
 
 }
+ </style>
 
-
-</style>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+</body>
+</html>
